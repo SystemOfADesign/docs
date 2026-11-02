@@ -1,0 +1,56 @@
+{
+  "source": "~/.t3/userdata/statev2.sqlite snapshot, 2026-11-02, read-only copy",
+  "t3_commit": "810e8f62f",
+  "corpus": {
+    "tasks": 3,
+    "scheduled_runs": 5,
+    "webhook_deliveries": 0,
+    "schedule_types": { "fixed_time": 3, "interval": 0, "webhook": 0 },
+    "creation_path": { "mcp_schedule_task": 3, "ui": 0 },
+    "thread_binding": { "bound_to_existing_thread": 3, "new_thread_per_run": 0 },
+    "provider": "claudeAgent / claude-fable-5-1 / effort=high",
+    "runtime_mode": "full-access",
+    "interaction_mode": "default",
+    "workspace_strategy": "root"
+  },
+  "tasks": [
+    { "id": "scheduled-task:3aeb1186", "title": "home-search 08:00", "schedule": { "type": "fixed_time", "timeOfDay": "08:00" }, "run_count": 2, "last_run_status": "succeeded" },
+    { "id": "scheduled-task:8ae70113", "title": "home-search 12:30", "schedule": { "type": "fixed_time", "timeOfDay": "12:30" }, "run_count": 1, "last_run_status": "succeeded" },
+    { "id": "scheduled-task:9487bc43", "title": "home-search 17:30", "schedule": { "type": "fixed_time", "timeOfDay": "17:30" }, "run_count": 2, "last_run_status": "succeeded" }
+  ],
+  "runs": [
+    { "task": "9487bc43", "due_local": "2026-10-31 17:30 EDT", "due_utc": "2026-10-31T21:30:00Z", "dispatched_utc": "2026-10-31T21:30:03.036Z", "dispatch_delay_ms": 3036, "run_duration_ms": 67390, "run_status": "completed", "reply_lines": 2 },
+    { "task": "3aeb1186", "due_local": "2026-11-01 08:00 EST", "due_utc": "2026-11-01T13:00:00Z", "dispatched_utc": "2026-11-01T13:00:03.210Z", "dispatch_delay_ms": 3210, "run_duration_ms": 41679, "run_status": "completed", "reply_lines": 3 },
+    { "task": "8ae70113", "due_local": "2026-11-01 12:30 EST", "due_utc": "2026-11-01T17:30:00Z", "dispatched_utc": "2026-11-01T17:30:04.985Z", "dispatch_delay_ms": 4985, "run_duration_ms": 23673, "run_status": "completed", "reply_lines": 3 },
+    { "task": "9487bc43", "due_local": "2026-11-01 17:30 EST", "due_utc": "2026-11-01T22:30:00Z", "dispatched_utc": "2026-11-01T22:30:01.473Z", "dispatch_delay_ms": 1473, "run_duration_ms": 28474, "run_status": "completed", "reply_lines": 3 },
+    { "task": "3aeb1186", "due_local": "2026-11-02 08:00 EST", "due_utc": "2026-11-02T13:00:00Z", "dispatched_utc": "2026-11-02T13:00:03.714Z", "dispatch_delay_ms": 3714, "run_duration_ms": 69573, "run_status": "completed", "reply_lines": 3 }
+  ],
+  "observed": {
+    "dispatch_success_rate": 1.0,
+    "run_completion_rate": 1.0,
+    "dispatch_delay_ms": { "min": 1473, "max": 4985, "p50": 3210, "p95": 4985, "note": "bounded by the 5 s poll tick" },
+    "run_duration_ms": { "min": 23673, "max": 69573, "p50": 41679 },
+    "duplicate_fires": 0,
+    "missed_runs": 0,
+    "prompt_compliance_3_lines_max": "5/5",
+    "dst_transition": {
+      "event": "US DST ended 2026-11-01 02:00 local",
+      "task_17_30": { "before": "21:30Z", "after": "22:30Z" },
+      "task_08_00": { "after": "13:00Z" },
+      "verdict": "wall-clock preserved across the transition"
+    },
+    "message_id_shape": "scheduled-task-message:<taskId>:<dueEpochMs>:scheduled",
+    "command_id_shape": "scheduled-task:<taskId>:<dueEpochMs>:scheduled"
+  },
+  "gaps_in_prod_corpus": [
+    "no interval schedules",
+    "no webhook tasks or deliveries",
+    "no new-thread-per-run tasks",
+    "no failed or interrupted runs",
+    "no paused/resumed tasks",
+    "no missed-run (server asleep) events",
+    "no UI-created tasks",
+    "no non-Claude provider",
+    "single project, single thread, single tenant"
+  ]
+}
