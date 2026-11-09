@@ -5,3 +5,4 @@ Engineering research notes and design documents.
 - [T3 Code automations: implementation, exposure, scale-out plan](t3-code/automations.md)
 - [Automations golden set: 95 cases, prod baseline, GO/NO-GO rubric](t3-code/automations-eval/README.md)
 - [Claude Docs screenshots](claude-docs/README.md)
+- [Push-to-talk dictation: reimplementation with a separate Whisper instance and Gemma correction](dictation/whisper-gemma-dictation.md)
