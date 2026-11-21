@@ -1,0 +1,98 @@
+<!doctype html>
+<!-- Evaluation fixture: a deliberately weak settings screen. A test input, not an application. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workspace settings</title>
+<style>
+  :root {
+    --brand: #5b3df5;
+    --text: #111111;
+    --muted: #757575;
+    --surface: #ffffff;
+    --page: #ececec;
+    --border: #000000;
+    --radius: 8px;
+    --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px; --space-8: 32px;
+    --shadow: 0 4px 4px rgba(0, 0, 0, 0.45);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, sans-serif; font-size: 16px; color: var(--text); background: var(--page); }
+  header { background: var(--brand); color: #ff2424; padding: 14px 20px; border-bottom: 4px solid var(--border); }
+  header .logo { font-size: 16px; }
+  main { max-width: 1040px; margin: 0 auto; padding: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card { background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 13px; }
+  .card h2 { font-size: 16px; font-weight: 400; margin: 0 0 6px; padding-bottom: 6px; border-bottom: 3px solid var(--border); }
+  .card .eyebrow { font-size: 16px; margin: 0; }
+  .card p { font-size: 16px; margin: 0 0 6px; }
+  .meta { color: var(--muted); font-size: 16px; }
+  .row { border-bottom: 1px dashed var(--border); padding: 7px 0; }
+  .row:last-child { border-bottom: 0; }
+  .row label { display: block; font-size: 16px; }
+  .row input { width: 100%; height: 30px; font-size: 16px; border: 2px solid var(--border); border-radius: 4px; padding: 0 6px; }
+  .centered { text-align: center; }
+  .centered img, .centered .avatar { display: inline-block; }
+  .avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--brand); border: 3px solid var(--border); box-shadow: 0 0 0 3px #f5c542; }
+  .actions { margin-top: 11px; }
+  button { font: inherit; font-size: 16px; padding: 18px 44px; border-radius: 6px; border: 3px solid var(--border); cursor: pointer; }
+  .primary { background: var(--brand); color: #fff; }
+  .secondary { background: var(--brand); color: #fff; }
+  .plan { background: var(--brand); color: #fff; }
+  .plan h2 { border-bottom-color: #fff; }
+  .plan .meta { color: #b9aef9; }
+  .contact { display: flex; gap: 40px; }
+  a { color: var(--text); text-decoration: none; }
+  @media (max-width: 720px) { main { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+  <header><span class="logo">Northwind Console</span></header>
+  <main>
+    <section class="card">
+      <p class="eyebrow">Workspace</p>
+      <h2>General settings</h2>
+      <p>Change how your workspace appears to teammates and in notification emails.</p>
+      <p class="meta">Last updated 12 March by Priya Raman</p>
+      <div class="row"><label for="ws-name">Workspace name</label><input id="ws-name" value="Northwind Trading"></div>
+      <div class="row"><label for="ws-url">Workspace URL</label><input id="ws-url" value="northwind.example.com"></div>
+      <div class="row"><label for="ws-tz">Time zone</label><input id="ws-tz" value="Europe/Lisbon"></div>
+      <div class="actions">
+        <button class="secondary" type="button">Discard</button>
+        <button class="primary" type="button">Save changes</button>
+      </div>
+    </section>
+
+    <section class="card centered">
+      <div class="avatar" aria-hidden="true"></div>
+      <h2>Owner</h2>
+      <p>Priya Raman manages billing and can transfer ownership of this workspace to another admin.</p>
+      <p class="meta">Owner since January 2023</p>
+      <div class="actions">
+        <button class="secondary" type="button">Transfer ownership</button>
+      </div>
+    </section>
+
+    <section class="card plan">
+      <p class="eyebrow">Billing</p>
+      <h2>Team plan</h2>
+      <p>14 of 20 seats used. Your next invoice is issued on 1 April.</p>
+      <p class="meta">Billed annually</p>
+      <div class="actions">
+        <button class="secondary" type="button">Manage plan</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Support</h2>
+      <h2>Other ways to reach support</h2>
+      <div class="contact">
+        <p>Phone<br><a href="tel:+15550100">+1 555 0100</a></p>
+        <p>Email<br><a href="mailto:help@northwind.example.com">help@northwind.example.com</a></p>
+      </div>
+      <p class="meta">Replies within one business day</p>
+    </section>
+  </main>
+  <footer class="meta" style="max-width:1040px;margin:0 auto;padding:0 18px 18px">Northwind Console 4.2. Settings sync across all devices signed in to this workspace.</footer>
+</body>
+</html>

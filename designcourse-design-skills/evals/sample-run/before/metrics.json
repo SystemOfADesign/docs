@@ -1,0 +1,650 @@
+{
+  "url": "fixtures/weak-settings.html (as of the run)",
+  "label": "before",
+  "capturedAt": "2026-11-21T03:55:32.005Z",
+  "viewports": {
+    "375": {
+      "title": "Workspace settings",
+      "viewport": {
+        "width": 375,
+        "height": 750
+      },
+      "horizontalOverflow": false,
+      "text": {
+        "elements": 27,
+        "distinctStyles": 5,
+        "distinctSizes": [
+          16
+        ],
+        "distinctWeights": [
+          400
+        ],
+        "distinctColors": [
+          "#111111",
+          "#ffffff",
+          "#757575",
+          "#ff2424",
+          "#b9aef9"
+        ],
+        "styles": [
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#111111",
+            "count": 14,
+            "sample": "Workspace",
+            "selector": "body > main > section.card > p.eyebrow"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#ffffff",
+            "count": 7,
+            "sample": "Discard",
+            "selector": "main > section.card > div.actions > button.secondary"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#757575",
+            "count": 4,
+            "sample": "Last updated 12 March by Priya Raman",
+            "selector": "body > main > section.card > p.meta"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#ff2424",
+            "count": 1,
+            "sample": "Northwind Console",
+            "selector": "html > body > header > span.logo"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#b9aef9",
+            "count": 1,
+            "sample": "Billed annually",
+            "selector": "body > main > section.card.plan > p.meta"
+          }
+        ],
+        "alignment": {
+          "left": 20,
+          "center": 3
+        }
+      },
+      "contrastFailures": [
+        {
+          "selector": "html > body > header > span.logo",
+          "text": "Northwind Console",
+          "fg": "#ff2424",
+          "bg": "#5b3df5",
+          "ratio": 1.61,
+          "need": 4.5,
+          "overImage": false
+        },
+        {
+          "selector": "body > main > section.card.plan > p.meta",
+          "text": "Billed annually",
+          "fg": "#b9aef9",
+          "bg": "#5b3df5",
+          "ratio": 3.06,
+          "need": 4.5,
+          "overImage": false
+        },
+        {
+          "selector": "html > body > footer.meta",
+          "text": "Northwind Console 4.2. Settings sync acr",
+          "fg": "#757575",
+          "bg": "#ececec",
+          "ratio": 3.9,
+          "need": 4.5,
+          "overImage": false
+        }
+      ],
+      "borders": {
+        "borderedElements": 21,
+        "distinct": [
+          {
+            "width": 2,
+            "style": "solid",
+            "color": "#000000",
+            "sides": 28,
+            "contrastVsSurface": 17.78,
+            "selector": "html > body > main > section.card"
+          },
+          {
+            "width": 3,
+            "style": "solid",
+            "color": "#000000",
+            "sides": 24,
+            "contrastVsSurface": 21,
+            "selector": "body > main > section.card > h2"
+          },
+          {
+            "width": 1,
+            "style": "dashed",
+            "color": "#000000",
+            "sides": 3,
+            "contrastVsSurface": 21,
+            "selector": "body > main > section.card > div.row"
+          },
+          {
+            "width": 4,
+            "style": "solid",
+            "color": "#000000",
+            "sides": 1,
+            "contrastVsSurface": 17.78,
+            "selector": "html > body > header"
+          },
+          {
+            "width": 3,
+            "style": "solid",
+            "color": "#ffffff",
+            "sides": 1,
+            "contrastVsSurface": 6.12,
+            "selector": "body > main > section.card.plan > h2"
+          }
+        ]
+      },
+      "shadows": {
+        "distinct": [
+          {
+            "value": "rgba(0, 0, 0, 0.45) 0px 4px 4px 0px",
+            "alpha": 0.45,
+            "count": 4,
+            "selector": "html > body > main > section.card"
+          },
+          {
+            "value": "rgb(245, 197, 66) 0px 0px 0px 3px",
+            "alpha": 1,
+            "count": 1,
+            "selector": "body > main > section.card.centered > div.avatar"
+          }
+        ]
+      },
+      "raggedColumns": [
+        {
+          "selector": "html > body > main > section.card.centered",
+          "children": 5,
+          "distinctLeftEdges": 5,
+          "edges": [
+            45,
+            71,
+            90,
+            160,
+            164
+          ]
+        }
+      ],
+      "spacing": {
+        "verticalGapsPx": [
+          {
+            "value": 6,
+            "count": 9
+          },
+          {
+            "value": 11,
+            "count": 3
+          },
+          {
+            "value": 3,
+            "count": 1
+          }
+        ]
+      },
+      "radii": [
+        {
+          "value": "8px",
+          "count": 4
+        },
+        {
+          "value": "6px",
+          "count": 4
+        },
+        {
+          "value": "4px",
+          "count": 3
+        },
+        {
+          "value": "50%",
+          "count": 1
+        }
+      ]
+    },
+    "640": {
+      "title": "Workspace settings",
+      "viewport": {
+        "width": 640,
+        "height": 448
+      },
+      "horizontalOverflow": false,
+      "text": {
+        "elements": 27,
+        "distinctStyles": 5,
+        "distinctSizes": [
+          16
+        ],
+        "distinctWeights": [
+          400
+        ],
+        "distinctColors": [
+          "#111111",
+          "#ffffff",
+          "#757575",
+          "#ff2424",
+          "#b9aef9"
+        ],
+        "styles": [
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#111111",
+            "count": 14,
+            "sample": "Workspace",
+            "selector": "body > main > section.card > p.eyebrow"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#ffffff",
+            "count": 7,
+            "sample": "Discard",
+            "selector": "main > section.card > div.actions > button.secondary"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#757575",
+            "count": 4,
+            "sample": "Last updated 12 March by Priya Raman",
+            "selector": "body > main > section.card > p.meta"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#ff2424",
+            "count": 1,
+            "sample": "Northwind Console",
+            "selector": "html > body > header > span.logo"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#b9aef9",
+            "count": 1,
+            "sample": "Billed annually",
+            "selector": "body > main > section.card.plan > p.meta"
+          }
+        ],
+        "alignment": {
+          "left": 20,
+          "center": 3
+        }
+      },
+      "contrastFailures": [
+        {
+          "selector": "html > body > header > span.logo",
+          "text": "Northwind Console",
+          "fg": "#ff2424",
+          "bg": "#5b3df5",
+          "ratio": 1.61,
+          "need": 4.5,
+          "overImage": false
+        },
+        {
+          "selector": "body > main > section.card.plan > p.meta",
+          "text": "Billed annually",
+          "fg": "#b9aef9",
+          "bg": "#5b3df5",
+          "ratio": 3.06,
+          "need": 4.5,
+          "overImage": false
+        },
+        {
+          "selector": "html > body > footer.meta",
+          "text": "Northwind Console 4.2. Settings sync acr",
+          "fg": "#757575",
+          "bg": "#ececec",
+          "ratio": 3.9,
+          "need": 4.5,
+          "overImage": false
+        }
+      ],
+      "borders": {
+        "borderedElements": 21,
+        "distinct": [
+          {
+            "width": 2,
+            "style": "solid",
+            "color": "#000000",
+            "sides": 28,
+            "contrastVsSurface": 17.78,
+            "selector": "html > body > main > section.card"
+          },
+          {
+            "width": 3,
+            "style": "solid",
+            "color": "#000000",
+            "sides": 24,
+            "contrastVsSurface": 21,
+            "selector": "body > main > section.card > h2"
+          },
+          {
+            "width": 1,
+            "style": "dashed",
+            "color": "#000000",
+            "sides": 3,
+            "contrastVsSurface": 21,
+            "selector": "body > main > section.card > div.row"
+          },
+          {
+            "width": 4,
+            "style": "solid",
+            "color": "#000000",
+            "sides": 1,
+            "contrastVsSurface": 17.78,
+            "selector": "html > body > header"
+          },
+          {
+            "width": 3,
+            "style": "solid",
+            "color": "#ffffff",
+            "sides": 1,
+            "contrastVsSurface": 6.12,
+            "selector": "body > main > section.card.plan > h2"
+          }
+        ]
+      },
+      "shadows": {
+        "distinct": [
+          {
+            "value": "rgba(0, 0, 0, 0.45) 0px 4px 4px 0px",
+            "alpha": 0.45,
+            "count": 4,
+            "selector": "html > body > main > section.card"
+          },
+          {
+            "value": "rgb(245, 197, 66) 0px 0px 0px 3px",
+            "alpha": 1,
+            "count": 1,
+            "selector": "body > main > section.card.centered > div.avatar"
+          }
+        ]
+      },
+      "raggedColumns": [
+        {
+          "selector": "html > body > main > section.card.centered",
+          "children": 5,
+          "distinctLeftEdges": 5,
+          "edges": [
+            41,
+            204,
+            223,
+            292,
+            296
+          ]
+        }
+      ],
+      "spacing": {
+        "verticalGapsPx": [
+          {
+            "value": 6,
+            "count": 9
+          },
+          {
+            "value": 11,
+            "count": 3
+          },
+          {
+            "value": 3,
+            "count": 1
+          }
+        ]
+      },
+      "radii": [
+        {
+          "value": "8px",
+          "count": 4
+        },
+        {
+          "value": "6px",
+          "count": 4
+        },
+        {
+          "value": "4px",
+          "count": 3
+        },
+        {
+          "value": "50%",
+          "count": 1
+        }
+      ]
+    },
+    "1280": {
+      "title": "Workspace settings",
+      "viewport": {
+        "width": 1280,
+        "height": 896
+      },
+      "horizontalOverflow": false,
+      "text": {
+        "elements": 27,
+        "distinctStyles": 5,
+        "distinctSizes": [
+          16
+        ],
+        "distinctWeights": [
+          400
+        ],
+        "distinctColors": [
+          "#111111",
+          "#ffffff",
+          "#757575",
+          "#ff2424",
+          "#b9aef9"
+        ],
+        "styles": [
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#111111",
+            "count": 14,
+            "sample": "Workspace",
+            "selector": "body > main > section.card > p.eyebrow"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#ffffff",
+            "count": 7,
+            "sample": "Discard",
+            "selector": "main > section.card > div.actions > button.secondary"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#757575",
+            "count": 4,
+            "sample": "Last updated 12 March by Priya Raman",
+            "selector": "body > main > section.card > p.meta"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#ff2424",
+            "count": 1,
+            "sample": "Northwind Console",
+            "selector": "html > body > header > span.logo"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#b9aef9",
+            "count": 1,
+            "sample": "Billed annually",
+            "selector": "body > main > section.card.plan > p.meta"
+          }
+        ],
+        "alignment": {
+          "left": 20,
+          "center": 3
+        }
+      },
+      "contrastFailures": [
+        {
+          "selector": "html > body > header > span.logo",
+          "text": "Northwind Console",
+          "fg": "#ff2424",
+          "bg": "#5b3df5",
+          "ratio": 1.61,
+          "need": 4.5,
+          "overImage": false
+        },
+        {
+          "selector": "body > main > section.card.plan > p.meta",
+          "text": "Billed annually",
+          "fg": "#b9aef9",
+          "bg": "#5b3df5",
+          "ratio": 3.06,
+          "need": 4.5,
+          "overImage": false
+        },
+        {
+          "selector": "html > body > footer.meta",
+          "text": "Northwind Console 4.2. Settings sync acr",
+          "fg": "#757575",
+          "bg": "#ececec",
+          "ratio": 3.9,
+          "need": 4.5,
+          "overImage": false
+        }
+      ],
+      "borders": {
+        "borderedElements": 21,
+        "distinct": [
+          {
+            "width": 2,
+            "style": "solid",
+            "color": "#000000",
+            "sides": 28,
+            "contrastVsSurface": 17.78,
+            "selector": "html > body > main > section.card"
+          },
+          {
+            "width": 3,
+            "style": "solid",
+            "color": "#000000",
+            "sides": 24,
+            "contrastVsSurface": 21,
+            "selector": "body > main > section.card > h2"
+          },
+          {
+            "width": 1,
+            "style": "dashed",
+            "color": "#000000",
+            "sides": 3,
+            "contrastVsSurface": 21,
+            "selector": "body > main > section.card > div.row"
+          },
+          {
+            "width": 4,
+            "style": "solid",
+            "color": "#000000",
+            "sides": 1,
+            "contrastVsSurface": 17.78,
+            "selector": "html > body > header"
+          },
+          {
+            "width": 3,
+            "style": "solid",
+            "color": "#ffffff",
+            "sides": 1,
+            "contrastVsSurface": 6.12,
+            "selector": "body > main > section.card.plan > h2"
+          }
+        ]
+      },
+      "shadows": {
+        "distinct": [
+          {
+            "value": "rgba(0, 0, 0, 0.45) 0px 4px 4px 0px",
+            "alpha": 0.45,
+            "count": 4,
+            "selector": "html > body > main > section.card"
+          },
+          {
+            "value": "rgb(245, 197, 66) 0px 0px 0px 3px",
+            "alpha": 1,
+            "count": 1,
+            "selector": "body > main > section.card.centered > div.avatar"
+          }
+        ]
+      },
+      "raggedColumns": [
+        {
+          "selector": "html > body > main > section.card.centered",
+          "children": 5,
+          "distinctLeftEdges": 5,
+          "edges": [
+            666,
+            778,
+            797,
+            867,
+            871
+          ]
+        }
+      ],
+      "spacing": {
+        "verticalGapsPx": [
+          {
+            "value": 6,
+            "count": 9
+          },
+          {
+            "value": 11,
+            "count": 3
+          },
+          {
+            "value": 3,
+            "count": 1
+          }
+        ]
+      },
+      "radii": [
+        {
+          "value": "8px",
+          "count": 4
+        },
+        {
+          "value": "6px",
+          "count": 4
+        },
+        {
+          "value": "4px",
+          "count": 3
+        },
+        {
+          "value": "50%",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "focus": {
+    "stops": 9,
+    "order": [
+      "input \"Northwind Trading\"",
+      "input \"northwind.example.com\"",
+      "input \"Europe/Lisbon\"",
+      "button \"Discard\"",
+      "button \"Save changes\"",
+      "button \"Transfer ownership\"",
+      "button \"Manage plan\"",
+      "a \"+1 555 0100\"",
+      "a \"help@northwind.example.com\""
+    ],
+    "noVisibleFocus": [],
+    "backwardJumps": 0
+  }
+}

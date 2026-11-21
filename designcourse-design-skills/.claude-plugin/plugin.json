@@ -1,0 +1,6 @@
+{
+  "name": "ui-lift",
+  "version": "0.1.0",
+  "description": "Lift the design quality of existing web UIs: one router skill (lift-ui) and four specialists for type, layout, surfaces and color. Preserves tokens, brand, framework and behavior.",
+  "keywords": ["design", "ui", "typography", "accessibility", "refactoring"]
+}

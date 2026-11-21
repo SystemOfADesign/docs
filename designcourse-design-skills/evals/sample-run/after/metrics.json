@@ -1,0 +1,617 @@
+{
+  "url": "sample-run/settings.after.html",
+  "label": "after",
+  "capturedAt": "2026-11-21T03:55:34.909Z",
+  "viewports": {
+    "375": {
+      "title": "Workspace settings",
+      "viewport": {
+        "width": 375,
+        "height": 750
+      },
+      "horizontalOverflow": false,
+      "text": {
+        "elements": 27,
+        "distinctStyles": 11,
+        "distinctSizes": [
+          16,
+          20
+        ],
+        "distinctWeights": [
+          400,
+          600
+        ],
+        "distinctColors": [
+          "#111111",
+          "#5f5f5f",
+          "#ffffff",
+          "#5b3df5",
+          "#ff2424",
+          "#e6e1fe"
+        ],
+        "styles": [
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#111111",
+            "count": 6,
+            "sample": "Change how your workspace appears to tea",
+            "selector": "body > main > section.card > p"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#5f5f5f",
+            "count": 4,
+            "sample": "Last updated 12 March by Priya Raman",
+            "selector": "body > main > section.card > p.meta"
+          },
+          {
+            "size": 16,
+            "weight": 600,
+            "color": "#111111",
+            "count": 4,
+            "sample": "Workspace name",
+            "selector": "main > section.card > div.row > label"
+          },
+          {
+            "size": 20,
+            "weight": 600,
+            "color": "#111111",
+            "count": 3,
+            "sample": "General settings",
+            "selector": "body > main > section.card > h2"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#ffffff",
+            "count": 3,
+            "sample": "Save changes",
+            "selector": "main > section.card > div.actions > button.primary"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#5b3df5",
+            "count": 2,
+            "sample": "+1 555 0100",
+            "selector": "section.card > div.contact > p > a"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#ff2424",
+            "count": 1,
+            "sample": "Northwind Console",
+            "selector": "html > body > header > span.logo"
+          },
+          {
+            "size": 16,
+            "weight": 600,
+            "color": "#5f5f5f",
+            "count": 1,
+            "sample": "Workspace",
+            "selector": "body > main > section.card > p.eyebrow"
+          },
+          {
+            "size": 16,
+            "weight": 600,
+            "color": "#e6e1fe",
+            "count": 1,
+            "sample": "Billing",
+            "selector": "body > main > section.card.plan > p.eyebrow"
+          },
+          {
+            "size": 20,
+            "weight": 600,
+            "color": "#ffffff",
+            "count": 1,
+            "sample": "Team plan",
+            "selector": "body > main > section.card.plan > h2"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#e6e1fe",
+            "count": 1,
+            "sample": "Billed annually",
+            "selector": "body > main > section.card.plan > p.meta"
+          }
+        ],
+        "alignment": {
+          "left": 23
+        }
+      },
+      "contrastFailures": [
+        {
+          "selector": "html > body > header > span.logo",
+          "text": "Northwind Console",
+          "fg": "#ff2424",
+          "bg": "#5b3df5",
+          "ratio": 1.61,
+          "need": 4.5,
+          "overImage": false
+        }
+      ],
+      "borders": {
+        "borderedElements": 6,
+        "distinct": [
+          {
+            "width": 1,
+            "style": "solid",
+            "color": "#8a8a8a",
+            "sides": 20,
+            "contrastVsSurface": 3.45,
+            "selector": "input#ws-name"
+          },
+          {
+            "width": 1,
+            "style": "solid",
+            "color": "#ffffff",
+            "sides": 4,
+            "contrastVsSurface": 6.12,
+            "selector": "main > section.card.plan > div.actions > button.secondary"
+          }
+        ]
+      },
+      "shadows": {
+        "distinct": [
+          {
+            "value": "rgba(0, 0, 0, 0.1) 0px 4px 4px 0px",
+            "alpha": 0.1,
+            "count": 4,
+            "selector": "html > body > main > section.card"
+          }
+        ]
+      },
+      "raggedColumns": [],
+      "spacing": {
+        "verticalGapsPx": [
+          {
+            "value": 8,
+            "count": 6
+          },
+          {
+            "value": 4,
+            "count": 5
+          },
+          {
+            "value": 16,
+            "count": 4
+          },
+          {
+            "value": 24,
+            "count": 3
+          },
+          {
+            "value": 12,
+            "count": 2
+          }
+        ]
+      },
+      "radii": [
+        {
+          "value": "8px",
+          "count": 11
+        },
+        {
+          "value": "50%",
+          "count": 1
+        }
+      ]
+    },
+    "640": {
+      "title": "Workspace settings",
+      "viewport": {
+        "width": 640,
+        "height": 448
+      },
+      "horizontalOverflow": false,
+      "text": {
+        "elements": 27,
+        "distinctStyles": 11,
+        "distinctSizes": [
+          16,
+          20
+        ],
+        "distinctWeights": [
+          400,
+          600
+        ],
+        "distinctColors": [
+          "#111111",
+          "#5f5f5f",
+          "#ffffff",
+          "#5b3df5",
+          "#ff2424",
+          "#e6e1fe"
+        ],
+        "styles": [
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#111111",
+            "count": 6,
+            "sample": "Change how your workspace appears to tea",
+            "selector": "body > main > section.card > p"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#5f5f5f",
+            "count": 4,
+            "sample": "Last updated 12 March by Priya Raman",
+            "selector": "body > main > section.card > p.meta"
+          },
+          {
+            "size": 16,
+            "weight": 600,
+            "color": "#111111",
+            "count": 4,
+            "sample": "Workspace name",
+            "selector": "main > section.card > div.row > label"
+          },
+          {
+            "size": 20,
+            "weight": 600,
+            "color": "#111111",
+            "count": 3,
+            "sample": "General settings",
+            "selector": "body > main > section.card > h2"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#ffffff",
+            "count": 3,
+            "sample": "Save changes",
+            "selector": "main > section.card > div.actions > button.primary"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#5b3df5",
+            "count": 2,
+            "sample": "+1 555 0100",
+            "selector": "section.card > div.contact > p > a"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#ff2424",
+            "count": 1,
+            "sample": "Northwind Console",
+            "selector": "html > body > header > span.logo"
+          },
+          {
+            "size": 16,
+            "weight": 600,
+            "color": "#5f5f5f",
+            "count": 1,
+            "sample": "Workspace",
+            "selector": "body > main > section.card > p.eyebrow"
+          },
+          {
+            "size": 16,
+            "weight": 600,
+            "color": "#e6e1fe",
+            "count": 1,
+            "sample": "Billing",
+            "selector": "body > main > section.card.plan > p.eyebrow"
+          },
+          {
+            "size": 20,
+            "weight": 600,
+            "color": "#ffffff",
+            "count": 1,
+            "sample": "Team plan",
+            "selector": "body > main > section.card.plan > h2"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#e6e1fe",
+            "count": 1,
+            "sample": "Billed annually",
+            "selector": "body > main > section.card.plan > p.meta"
+          }
+        ],
+        "alignment": {
+          "left": 23
+        }
+      },
+      "contrastFailures": [
+        {
+          "selector": "html > body > header > span.logo",
+          "text": "Northwind Console",
+          "fg": "#ff2424",
+          "bg": "#5b3df5",
+          "ratio": 1.61,
+          "need": 4.5,
+          "overImage": false
+        }
+      ],
+      "borders": {
+        "borderedElements": 6,
+        "distinct": [
+          {
+            "width": 1,
+            "style": "solid",
+            "color": "#8a8a8a",
+            "sides": 20,
+            "contrastVsSurface": 3.45,
+            "selector": "input#ws-name"
+          },
+          {
+            "width": 1,
+            "style": "solid",
+            "color": "#ffffff",
+            "sides": 4,
+            "contrastVsSurface": 6.12,
+            "selector": "main > section.card.plan > div.actions > button.secondary"
+          }
+        ]
+      },
+      "shadows": {
+        "distinct": [
+          {
+            "value": "rgba(0, 0, 0, 0.1) 0px 4px 4px 0px",
+            "alpha": 0.1,
+            "count": 4,
+            "selector": "html > body > main > section.card"
+          }
+        ]
+      },
+      "raggedColumns": [],
+      "spacing": {
+        "verticalGapsPx": [
+          {
+            "value": 8,
+            "count": 6
+          },
+          {
+            "value": 4,
+            "count": 5
+          },
+          {
+            "value": 16,
+            "count": 4
+          },
+          {
+            "value": 24,
+            "count": 3
+          },
+          {
+            "value": 12,
+            "count": 2
+          }
+        ]
+      },
+      "radii": [
+        {
+          "value": "8px",
+          "count": 11
+        },
+        {
+          "value": "50%",
+          "count": 1
+        }
+      ]
+    },
+    "1280": {
+      "title": "Workspace settings",
+      "viewport": {
+        "width": 1280,
+        "height": 896
+      },
+      "horizontalOverflow": false,
+      "text": {
+        "elements": 27,
+        "distinctStyles": 11,
+        "distinctSizes": [
+          16,
+          20
+        ],
+        "distinctWeights": [
+          400,
+          600
+        ],
+        "distinctColors": [
+          "#111111",
+          "#5f5f5f",
+          "#ffffff",
+          "#5b3df5",
+          "#ff2424",
+          "#e6e1fe"
+        ],
+        "styles": [
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#111111",
+            "count": 6,
+            "sample": "Change how your workspace appears to tea",
+            "selector": "body > main > section.card > p"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#5f5f5f",
+            "count": 4,
+            "sample": "Last updated 12 March by Priya Raman",
+            "selector": "body > main > section.card > p.meta"
+          },
+          {
+            "size": 16,
+            "weight": 600,
+            "color": "#111111",
+            "count": 4,
+            "sample": "Workspace name",
+            "selector": "main > section.card > div.row > label"
+          },
+          {
+            "size": 20,
+            "weight": 600,
+            "color": "#111111",
+            "count": 3,
+            "sample": "General settings",
+            "selector": "body > main > section.card > h2"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#ffffff",
+            "count": 3,
+            "sample": "Save changes",
+            "selector": "main > section.card > div.actions > button.primary"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#5b3df5",
+            "count": 2,
+            "sample": "+1 555 0100",
+            "selector": "section.card > div.contact > p > a"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#ff2424",
+            "count": 1,
+            "sample": "Northwind Console",
+            "selector": "html > body > header > span.logo"
+          },
+          {
+            "size": 16,
+            "weight": 600,
+            "color": "#5f5f5f",
+            "count": 1,
+            "sample": "Workspace",
+            "selector": "body > main > section.card > p.eyebrow"
+          },
+          {
+            "size": 16,
+            "weight": 600,
+            "color": "#e6e1fe",
+            "count": 1,
+            "sample": "Billing",
+            "selector": "body > main > section.card.plan > p.eyebrow"
+          },
+          {
+            "size": 20,
+            "weight": 600,
+            "color": "#ffffff",
+            "count": 1,
+            "sample": "Team plan",
+            "selector": "body > main > section.card.plan > h2"
+          },
+          {
+            "size": 16,
+            "weight": 400,
+            "color": "#e6e1fe",
+            "count": 1,
+            "sample": "Billed annually",
+            "selector": "body > main > section.card.plan > p.meta"
+          }
+        ],
+        "alignment": {
+          "left": 23
+        }
+      },
+      "contrastFailures": [
+        {
+          "selector": "html > body > header > span.logo",
+          "text": "Northwind Console",
+          "fg": "#ff2424",
+          "bg": "#5b3df5",
+          "ratio": 1.61,
+          "need": 4.5,
+          "overImage": false
+        }
+      ],
+      "borders": {
+        "borderedElements": 6,
+        "distinct": [
+          {
+            "width": 1,
+            "style": "solid",
+            "color": "#8a8a8a",
+            "sides": 20,
+            "contrastVsSurface": 3.45,
+            "selector": "input#ws-name"
+          },
+          {
+            "width": 1,
+            "style": "solid",
+            "color": "#ffffff",
+            "sides": 4,
+            "contrastVsSurface": 6.12,
+            "selector": "main > section.card.plan > div.actions > button.secondary"
+          }
+        ]
+      },
+      "shadows": {
+        "distinct": [
+          {
+            "value": "rgba(0, 0, 0, 0.1) 0px 4px 4px 0px",
+            "alpha": 0.1,
+            "count": 4,
+            "selector": "html > body > main > section.card"
+          }
+        ]
+      },
+      "raggedColumns": [],
+      "spacing": {
+        "verticalGapsPx": [
+          {
+            "value": 8,
+            "count": 6
+          },
+          {
+            "value": 4,
+            "count": 5
+          },
+          {
+            "value": 16,
+            "count": 4
+          },
+          {
+            "value": 24,
+            "count": 3
+          },
+          {
+            "value": 12,
+            "count": 2
+          }
+        ]
+      },
+      "radii": [
+        {
+          "value": "8px",
+          "count": 11
+        },
+        {
+          "value": "50%",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "focus": {
+    "stops": 9,
+    "order": [
+      "input \"Northwind Trading\"",
+      "input \"northwind.example.com\"",
+      "input \"Europe/Lisbon\"",
+      "button \"Discard\"",
+      "button \"Save changes\"",
+      "button \"Transfer ownership\"",
+      "button \"Manage plan\"",
+      "a \"+1 555 0100\"",
+      "a \"help@northwind.example.com\""
+    ],
+    "noVisibleFocus": [],
+    "backwardJumps": 0
+  }
+}

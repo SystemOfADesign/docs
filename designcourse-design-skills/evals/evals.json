@@ -1,0 +1,109 @@
+{
+  "skills": ["lift-ui", "lift-type", "lift-layout", "lift-surfaces", "lift-color"],
+  "fixture": "evals/fixtures/weak-settings.html",
+  "notes": "Run each prompt in a fresh agent with the skills available and a scratch copy of the fixture. Grade against must and must_not. Seeded defects are listed in evals/README.md.",
+  "evals": [
+    {
+      "id": "audit-only",
+      "prompt": "Audit the design of weak-settings.html. Don't change anything yet.",
+      "expected_mode": "audit",
+      "must": [
+        "No file is modified",
+        "Findings are ranked, contrast failures first",
+        "Each finding has a location, a measurement and a rule id",
+        "Reports the header text contrast (about 1.6:1) and the grey footer text on the page background (about 3.9:1)",
+        "Reports that all text is 16px regular, so roles are indistinguishable",
+        "Reports the centered card beside left-aligned cards",
+        "Reports heavy black borders and the 45% shadow"
+      ],
+      "must_not": [
+        "Proposes new fonts or a new brand color",
+        "Findings stated as taste without a measurement"
+      ]
+    },
+    {
+      "id": "typography-only",
+      "prompt": "The typography on weak-settings.html is flat, everything looks the same. Fix just the typography.",
+      "expected_mode": "type",
+      "must": [
+        "Card headings become clearly distinct from body text, by weight first and size if needed",
+        "Eyebrow and metadata are quieter than headings and still pass 4.5:1",
+        "Font family is unchanged",
+        "Borders, shadows, layout and brand color are unchanged",
+        "Heading elements stay heading elements",
+        "Other severe issues (contrast of header text, borders) are listed as residual, not fixed"
+      ],
+      "must_not": [
+        "Adds an uppercase tracked eyebrow style without asking",
+        "Changes copy",
+        "Introduces more than three text tiers in a card"
+      ]
+    },
+    {
+      "id": "hierarchy-and-layout",
+      "prompt": "This settings page feels messy and I can't tell what the main action is. Tidy the layout.",
+      "expected_mode": "layout",
+      "must": [
+        "The centered Owner card is left-aligned to match its neighbours",
+        "Each card has a single left edge for heading, text and controls",
+        "One filled primary action; Discard and other secondary actions are visibly quieter",
+        "Oversized buttons are scaled down and spacing snaps to the existing --space tokens",
+        "Phone and Email are stacked vertically",
+        "The duplicate Support heading is raised as a gated copy change, not silently deleted",
+        "Layout still collapses to one column under 720px"
+      ],
+      "must_not": [
+        "Reorders DOM to change visual order",
+        "Adds a new breakpoint",
+        "Changes colors beyond what secondary-button quieting requires"
+      ]
+    },
+    {
+      "id": "comprehensive",
+      "prompt": "Elevate weak-settings.html. Keep it recognisably the same product.",
+      "expected_mode": "full",
+      "must": [
+        "Before and after screenshots at the same viewports, or an explicit statement that no browser tooling was available",
+        "All text passes WCAG AA after the change, verified by measurement",
+        "Brand purple (--brand) is still the accent; typeface unchanged",
+        "Heavy black borders and heading rules are removed or reduced to 1px low contrast; inputs keep a perceivable boundary",
+        "Shadow is removed or reduced to a subtle value",
+        "The saturated plan card flood is flagged or reduced, with the reasoning stated",
+        "Changes are made in the :root tokens and shared selectors rather than inline styles",
+        "Focus is visible on inputs and buttons; page has no horizontal overflow at 375px",
+        "Report lists changes with before and after values, validation results and residual issues"
+      ],
+      "must_not": [
+        "Rewrites the markup structure or removes sections without approval",
+        "Introduces a new visual style (gradients, glass, neubrutalism, new palette)",
+        "Removes focus outlines"
+      ]
+    },
+    {
+      "id": "brand-color-gate",
+      "prompt": "Make the color on weak-settings.html better.",
+      "expected_mode": "color",
+      "must": [
+        "Header text is changed to a passing color from the existing tokens",
+        "Muted text on the page background is fixed via the --muted token after checking it on every surface it is used on",
+        "If --brand itself is to change, the agent asks first and reports the measured ratio"
+      ],
+      "must_not": [
+        "Silently replaces --brand",
+        "Changes typography or layout"
+      ]
+    },
+    {
+      "id": "no-trigger",
+      "prompt": "Add a new 'API keys' section to the settings page with a table of keys and a create button.",
+      "expected_mode": "none",
+      "must": [
+        "Treated as a feature build; the lift skills are not the driver",
+        "If consulted at all, only to match existing styles"
+      ],
+      "must_not": [
+        "Runs a design audit or restyles existing sections unprompted"
+      ]
+    }
+  ]
+}

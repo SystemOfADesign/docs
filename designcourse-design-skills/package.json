@@ -1,0 +1,10 @@
+{
+  "name": "designcourse-design-skills",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Agent skills for lifting the design quality of existing web UIs, with tests.",
+  "scripts": {
+    "test": "node --test tests/"
+  }
+}
