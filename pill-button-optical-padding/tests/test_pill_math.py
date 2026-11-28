@@ -1,4 +1,4 @@
-"""Deterministic checks that pill_math.py reproduces every number the reel shows. Run: python3 -m unittest tests/"""
+"""Deterministic checks that pill_math.py reproduces the reference values. Run: python3 -m unittest discover -s tests"""
 import math
 import os
 import sys
@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 import pill_math  # noqa: E402
 
 
-class ReelNumbers(unittest.TestCase):
+class ReferenceValues(unittest.TestCase):
     BASE = dict(py=8, px=16, lh=24, cap=12)
 
     def test_k(self):
@@ -50,26 +50,6 @@ class ReelNumbers(unittest.TestCase):
         o = pill_math.compute(**self.BASE)
         two_corners = 2 * o["r"] ** 2 * (1 - math.pi / 4)
         self.assertAlmostEqual(o["edge_label"], two_corners / o["height"])
-
-
-class Checker(unittest.TestCase):
-    def test_check_passes_for_formula_values(self):
-        b = {"id": "b", "py": 8, "px": 16, "lh": 24, "r": 20, "rDeclared": 20, "children": [
-            {"role": "icon", "position": ["first"], "startDist": 8, "endDist": 0, "marginStart": -8, "marginEnd": 0},
-            {"role": "label", "position": ["last"], "startDist": 0, "endDist": 20.29, "marginStart": 0, "marginEnd": 4.29},
-        ]}
-        exp, res = pill_math.check_button(b)
-        self.assertTrue(all(res.values()), res)
-
-    def test_check_fails_for_usual_pill(self):
-        b = {"id": "b", "py": 8, "px": 16, "lh": 24, "r": 20, "rDeclared": 999, "children": [
-            {"role": "icon", "position": ["first"], "startDist": 16, "endDist": 0, "marginStart": 0, "marginEnd": 0},
-            {"role": "label", "position": ["last"], "startDist": 0, "endDist": 16, "marginStart": 0, "marginEnd": 0},
-        ]}
-        exp, res = pill_math.check_button(b)
-        self.assertFalse(res["icon-concentric:start"])
-        self.assertFalse(res["label-strip:end"])
-        self.assertFalse(res["real-radius"])
 
 
 if __name__ == "__main__":

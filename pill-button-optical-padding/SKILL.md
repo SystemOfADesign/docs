@@ -1,101 +1,52 @@
 ---
 name: pill-button-optical-padding
-description: Audit and fix pill / rounded button padding with the exact math from Ariakit's reel "You (and Claude) have been styling pill buttons wrong" (instagram.com/reel/DgQdaYhCFeA). Makes an icon concentric with the round end (margin = py - px) and gives the label back the strip the curve steals (r * (1 - pi/4) * r / pill) so the optical space equals the padding, with a per-child --edge so icon-first, icon-last, text-only and icon-only all hold. Use this whenever a request involves pill buttons, rounded-full / 9999px buttons, chips, tags, badges, icon+text buttons, icon alignment inside buttons, "text looks too close to the edge", "icon looks off-center", or any audit of button padding/spacing across an app, even if nobody says "optical" or "concentric".
+description: Audit and fix padding on pill and rounded buttons so icons sit concentric with the round end (edge margin py - px) and labels get back the space the curve removes (edge strip r * (1 - pi/4) * r / pill), applied per child with :first-child / :last-child so icon-first, icon-last, text-only and icon-only all hold. Use whenever a request involves pill buttons, rounded-full / 9999px buttons, chips, tags, badges, icon+text buttons, icon alignment inside buttons, "text looks too close to the edge", "icon looks off-center", or an audit of button padding across an app, even if nobody says "optical" or "concentric".
 ---
 
 # Pill button optical padding
 
-Source: Ariakit (@ariakitjs) Instagram reel, 2026-11-27, https://www.instagram.com/reel/DgQdaYhCFeA/ . Everything in the section "The reel's math" is transcribed from the reel's audio and on-screen CSS; see `references/reel-evidence.md` for the timestamped evidence. Anything the reel does not say is kept apart under "Supplemental" and in `references/supplemental.md`, and must never silently change the math.
+A rounded button with `padding: py px` has two geometric defects that this skill measures and corrects:
 
-## What the reel claims
+1. **Edge icon off-center.** An icon at the straight edge sits `px` from that edge but `py` from top and bottom, so it is not concentric with the round end.
+2. **Edge label optically too close.** The curve removes area from the two corners next to the label, so the average horizontal space between the label and the curve is less than `px`.
 
-A "usual" pill button (`padding: 0.5em 1em; border-radius: 999px`, icon + label) has two defects:
+Both fixes are closed-form, so they hold when padding, radius, font size or child order changes. Attribution and archival evidence for the method are in `references/provenance.md`; it is optional reading and not needed to apply the skill.
 
-1. **Icon off-center.** The icon sits `px` (16) from the straight edge but only `py` (8) from top and bottom, so it is not concentric with the round end.
-2. **Text optically closer than its padding.** The round end "eats the corners", so the average space between the label and the curve is about 12, not the 16 the padding says.
+## The math (normative)
 
-The fix is pure math, so it holds when padding, radius or child order changes. Read the three fixes below, then follow the workflow.
+### Definitions
 
-## The reel's math (do not alter)
-
-### Inputs and definitions
-
-| Symbol | CSS | Meaning (as used in the reel) |
+| Symbol | CSS | Meaning |
 |---|---|---|
-| `py` | `--py: 0.5em` | vertical padding |
-| `px` | `--px: 1em` | horizontal padding |
-| `1lh` | line-height unit | the icon's width and height; also the label's line box |
-| `1cap` | cap-height unit | used only in the pre-existing `gap` rule |
-| `pill` | `--pill: calc(var(--py) + 0.5lh)` | "for a full pill, the radius is half the height": half the button's content+padding height |
-| `r` | `--r` | the button's **real** corner radius. The reel sets `--r: var(--pill)` for a full pill; `999px` breaks the math |
-| `k` | `(1 - pi / 4)` | ≈ 0.2146, the fraction of a corner square a quarter circle does not cover |
-| `--edge` | per child | the extra room a child needs at the button's edge; the icon's is negative, the label's is positive |
+| `py` | `--py` | vertical padding |
+| `px` | `--px` | horizontal padding |
+| `lh` | `1lh` | line-height of the button text; icon box is `1lh × 1lh` |
+| `cap` | `1cap` | cap height of the button font; used only in `gap` |
+| `pill` | `--pill: calc(var(--py) + 0.5lh)` | half the button height when content is one line box (`r` of a full pill) |
+| `r` | `--r` | the **rendered** corner radius. For a full pill set `--r: var(--pill)`. A `999px` / `9999px` token must never enter the formulas |
+| `k` | `(1 - pi / 4)` | 0.2146, the share of a corner square a quarter circle leaves uncovered |
+| `--edge` | per child | extra room a child needs at the button edge: negative for an icon, positive for a label |
 
-Units: the reel works in `em`, `lh`, `cap` and `px` with `font-size: 16px`; all on-screen numbers are CSS px rounded to integers for display. The CSS itself is never rounded.
+Valid scope: single-line content (`1lh` tall), no border, `px >= py`, `0 <= r <= pill`. Outside that, see `references/supplemental.md` and report instead of guessing.
 
-### Starting point shown in the reel ("the usual pill")
+### Formulas
 
-```css
-button {
-  --py: 0.5em;
-  --px: 1em;
-  --r: 999px;
-  padding: var(--py) var(--px);
-  gap: max(var(--py), var(--px) - (1lh - 1cap) / 2);
-  border-radius: var(--r);
-}
+```
+edge_icon  = py - px                      # icon margin at the edge (negative)
+edge_label = r * (1 - pi/4) * r / pill    # label margin at the edge
+gap        = max(py, px - (lh - cap) / 2) # icon-to-label gap; shown with the method, never derived
 ```
 
-The `gap` rule is on screen from the first frame and is never explained in the audio. Keep it as shown; at 16px / 24px line-height / ~12px cap it yields 10.
+Derivation of `edge_label`: each rounded corner leaves `r² (1 − π/4)` of its square uncovered; the label's end meets two corners; spreading `2 r² k` over the button height `2·pill` gives a strip of width `r·k·r / pill`. For a full pill (`r = pill`) the strip is `r (1 − π/4)`. Using a declared `999px` instead of the rendered radius inflates the strip to thousands of px.
 
-### Fix 1: the icon (concentric with the round end)
-
-"A negative margin pulls it into the padding. And now it's concentric. Same space all around."
-
-```css
-.icon {
-  width: 1lh;
-  height: 1lh;
-  margin-inline-start: calc(var(--py) - var(--px));  /* 8 - 16 = -8 */
-}
-```
-
-Result at 16px: icon has 8 on every side ("8 all around").
-
-### Fix 2: the label (give back the strip the curve cut)
-
-"The curve cuts these two corners. Spread them over the height, and you get (1 - pi/4) of the radius. For a full pill, the radius is half the height. Add the strip to the end of the text."
-
-```css
-button { --pill: calc(var(--py) + 0.5lh); --r: var(--pill); }   /* real radius, not 999px */
-.label {
-  margin-inline-end: calc(var(--r) * (1 - pi / 4) * var(--r) / var(--pill));
-}
-```
-
-On screen: `same area: r × (1 − π/4) = 4` with r = 20 (exact 4.29). "The math reads 999 pixels" when `--r: 999px` (the strip becomes ~10,720), so **use the real radius**. With `--r: var(--pill)` the label's end reads 20 and the optical space is 16 ("Optical space 16", "avg 16").
-
-Derivation that reproduces every on-screen number (the audio says "spread them over the height"): each cut corner is a square of side `r` minus a quarter circle, area `r² · (1 − π/4)`. Two corners meet the label's end. Spread over the full height `2 · pill`: `2 · r² · k / (2 · pill) = r · k · r / pill`. For a full pill `r = pill`, so the strip is `r · (1 − π/4)`.
-
-### Fix 3: either order (first child / last child)
-
-"Those margins only know start and end, so each part names its own room at the edge. Then two rules give it to the first child, and the last. Now it works either way. Without the icon, as just an icon, or back where it started."
-
-```css
-.icon  { width: 1lh; height: 1lh; --edge: calc(var(--py) - var(--px)); }
-.label { --edge: calc(var(--r) * (1 - pi / 4) * var(--r) / var(--pill)); }
-button > :first-child { margin-inline-start: var(--edge); }
-button > :last-child  { margin-inline-end:   var(--edge); }
-```
-
-### Final CSS (assembled from the reel's last state)
+### Target CSS
 
 ```css
 button {
   --py: 0.5em;
   --px: 1em;
   --pill: calc(var(--py) + 0.5lh);
-  --r: var(--pill);                /* or the design's real radius when it is not a full pill */
+  --r: var(--pill);                /* full pill; otherwise the design's real radius token */
   padding: var(--py) var(--px);
   gap: max(var(--py), var(--px) - (1lh - 1cap) / 2);
   border-radius: var(--r);
@@ -106,98 +57,85 @@ button > :first-child { margin-inline-start: var(--edge); }
 button > :last-child  { margin-inline-end:   var(--edge); }
 ```
 
-### Worked examples shown in the reel (16px font, 24px line-height)
+Each child declares its own `--edge`; the two child rules hand it to whichever child touches an edge, so order does not matter: icon first, icon last, label only (strip both ends), icon only (`py` all around).
 
-| Case | py | px | r | icon edge | label strip | label end reads | optical avg |
+### Reference values (16px font, 24px line-height, cap 12)
+
+| Case | py | px | r | pill | edge_icon | edge_label | optical space before → after |
 |---|---|---|---|---|---|---|---|
-| usual pill (before) | 8 | 16 | 999 → renders 20 | 16 (off-center, "8" offset) | 0 | 16 | 12 |
-| icon fixed only | 8 | 16 | 20 | 8 all around | 0 | 16 | 12 |
-| `--r: 999px` in the formula | 8 | 16 | 999 | 8 | 10,709 | 10,725 ("breaks") | n/a |
-| fixed, `--r: var(--pill)` | 8 | 16 | 20 | 8 | 4.29 → "4" | 20 | 16 |
-| `--py: 0.7em` | 11.2 | 16 | 23.2 | 11 all around | 4.98 → "5" | 21 | 16 |
-| `--r: 19px` | 8 | 16 | 19 | 8 | 3.87 | 20 | 16 |
-| `--r: 4px` | 8 | 16 | 4 | 8 | 0.17 | 16 | 16 |
-| icon last, both rules | 8 | 16 | 20 | 8 (end) | 4.29 (start) | 20 start, 8 end | 16 |
-| text only | 8 | 16 | 20 | n/a | 4.29 both ends | 20 / 20 | 16 / 16 |
-| icon only | 8 | 16 | 20 | 8 both ends | n/a | 8 / 8 | n/a |
+| default pill | 8 | 16 | 20 | 20 | −8 | 4.292 | 11.71 → 16 |
+| `--r: 999px` fed to the formula | 8 | 16 | 999 | 20 | −8 | 10,708.6 | broken |
+| `--py: 0.7em` | 11.2 | 16 | 23.2 | 23.2 | −4.8 | 4.979 | 11.02 → 16 |
+| `--r: 19px` | 8 | 16 | 19 | 20 | −8 | 3.874 | 12.13 → 16 |
+| `--r: 4px` | 8 | 16 | 4 | 20 | −8 | 0.172 | 15.83 → 16 |
+| square, `r = 0` | 8 | 16 | 0 | 20 | −8 | 0 | 16 → 16 |
 
-`scripts/pill_math.py` reproduces this table; `tests/test_pill_math.py` pins it.
+`scripts/pill_math.py` prints these for any inputs; `tests/test_pill_math.py` pins them. More rows and the Chromium measurements are in `references/math.md`.
 
 ## Workflow
 
-### 1. Scope and read the system first
+### 1. Read the system first
 
-- Find the button primitives: shared component(s), design tokens (CSS custom properties, Tailwind theme, theme objects), utility classes. Prefer fixing one shared component or token set over editing call sites.
-- List every in-scope button variant: text-only, icon+text (icon first), text+icon (icon last), icon-only, and each size. Chips, tags and badges count if they are rounded.
-- Record the current values per variant: font-size, line-height (px), padding-block, padding-inline, border-radius (declared and rendered), gap, icon box size, child margins, border width.
-- Note which values come from tokens and which are one-offs. Do not change a token's meaning; add the computed strips as new rules on the button, not as edits to spacing scale tokens.
+- Find the shared button component(s), tokens (CSS custom properties, Tailwind theme, theme objects) and size variants. Fix the shared component, not call sites.
+- List in-scope variants: text-only, icon-first, icon-last, icon-only, each size. Rounded chips, tags and badges count.
+- Record per variant: font-size, line-height px, padding-block, padding-inline, declared and rendered radius, gap, icon box, child margins, border width. Note which values are tokens.
 
-### 2. Audit with measurements
+### 2. Measure
 
-Run `scripts/audit_buttons.mjs <url-or-file> [--selector <css>]` (needs `playwright` resolvable; otherwise paste `scripts/measure-buttons.js` into the browser console or a preview tool's evaluate). For each button it reports measured `py`, `px`, `lh`, rendered `r`, `pill`, and the four checks:
+Run `node scripts/audit_buttons.mjs <url-or-file> [--selector <css>]` (Playwright; set `PILL_PW_DIR` if it is installed elsewhere) or paste `scripts/measure-buttons.js` into the browser console and call `measurePillButtons()`. Per button it reports `py`, `px`, `lh`, rendered `r`, `pill`, the expected edges and two checks, 0.5 px tolerance:
 
 | Check | Passes when |
 |---|---|
-| `icon-concentric` | an edge icon's distance to the straight edge equals `py` (within 0.5px) |
-| `label-strip` | an edge label has an end margin of `r · k · r / pill` (within 0.5px) |
-| `real-radius` | the radius used in the strip equals the rendered radius, not 999px / 9999px |
-| `optical-space` | `px + strip − r·k·r/pill` equals `px` (within 0.5px) |
+| `icon-concentric` | an edge icon's distance to the straight edge equals `py` |
+| `label-strip` | an edge label's margin equals `r·k·r / pill` |
 
-A button with no rounded end (`r = 0`) passes trivially; the formula gives 0.
+It also prints the optical space `px + margin − r·k·r/pill` (equals `px` when `label-strip` passes) and warns when the declared radius is larger than the rendered one or the content is taller than `1lh`. `r = 0` passes trivially. Keep the before table for the report.
 
 ### 3. Plan the smallest change
 
-- Put the math on the shared button component (or one shared stylesheet), expressed in the project's own tokens: `--py`/`--px` can alias existing spacing tokens, `--r` the existing radius token. If the project uses `rounded-full` / `9999px`, keep that visual by setting the rendered radius to `var(--pill)`; the picture does not change, only the math gains the real radius.
-- Children must be identifiable as icon or label. Use existing class names, data attributes or slots; if the component renders a bare text node, wrap it in a `span.label` (markup change, call it out).
-- If the project's icon is not `1lh` square, the icon formula still applies (it is about padding, not icon size), but `pill` must still be `py + half the content height`; see `references/supplemental.md` for non-1lh content.
-- Ask before changing brand radius, token values or markup semantics beyond wrapping a label. Do not override a deliberately asymmetric design without saying so in the report.
+- Alias `--py` / `--px` to the existing spacing tokens and `--r` to the existing radius token. If the token is `rounded-full` / `9999px`, keep it for the picture and set `--r: var(--pill)` for the math; the rendering is identical.
+- Children must be addressable as icon or label (class, `data-slot`, `svg`). A bare text node needs a `span.label` wrapper; say so.
+- Keep the system's own icon-to-label gap if it defines one; otherwise use the `gap` rule above.
+- Ask before changing brand radius, token values or markup beyond wrapping a label. Do not override a deliberately asymmetric design silently.
 
 ### 4. Implement
 
-- Apply the final CSS block above, translated per `references/adapting.md` (plain CSS, Tailwind, CSS Modules, CSS-in-JS, Sass, native equivalents).
-- Keep the `gap` rule from the reel unless the design system already defines its own icon-to-label gap; then keep theirs and state it.
-- Add the two `:first-child` / `:last-child` rules so order does not matter. If children are wrapped by the framework (for example a loading spinner slot), target the visible children.
+Apply the target CSS through the shared component, translated per `references/adapting.md` (plain CSS, Tailwind, CSS-in-JS, component libraries, SwiftUI / Compose / React Native / Flutter). Remove hand-written icon margins (`mr-2`, `startIcon` offsets) that the per-child `--edge` replaces. Add both child rules.
 
-### 5. Verify (measurable, before and after)
+### 5. Verify
 
-- Re-run the audit on the same pages. Every in-scope button must pass all four checks; paste the before/after rows in the report.
-- Check at least one button per variant and size, plus the RTL direction if the app supports it (logical properties make it free).
-- Run the project's own lint, type check, tests and visual regression if present.
-- `python3 scripts/pill_math.py --py 8 --px 16 --lh 24` prints the expected numbers for any size so reviewers can compare by hand.
+Re-run the audit on the same pages: every in-scope button passes both checks. Cover one button per variant and size, plus RTL if supported. Run the project's own lint, tests and visual regression. `python3 scripts/pill_math.py --py 8 --px 16 --lh 24 --cap 12` gives reviewers the expected numbers by hand.
 
 ### 6. Report
 
 ```
 # Pill button padding: <app/component>
 ## Scope: components, variants, pages measured
-## Before: table of measured values and failing checks
-## Change: files touched, tokens aliased, markup changes (if any)
+## Before: measured table and failing checks
+## Change: files touched, tokens aliased, markup changes
 ## After: same table, all checks passing
-## Kept deliberately: design-system values left alone and why
-## Supplemental notes: anything applied from references/supplemental.md, flagged as not from the reel
+## Kept deliberately: system values left alone and why
+## Supplemental: anything applied from references/supplemental.md, with both numbers where it changes one
 ## Open questions
 ```
 
-## Supplemental (not from the reel; keep separate, flag conflicts)
+## Supplemental (not part of the method; never changes the formulas silently)
 
-These are engineering and accessibility notes added by this skill. They never replace the formulas above. If one of them would change a number the formula produces, do not apply it silently: list it under "Supplemental notes" with both numbers.
+Engineering and accessibility notes outside the formulas' scope. If one would change a number the formulas produce, list both numbers under "Supplemental" and let the user decide. Details and conflict rules in `references/supplemental.md`.
 
-- **Browser support**: `lh`, `cap` and `pi` inside `calc()` need current browsers (Chrome 120+, Safari 17.2+, Firefox 120+ as of 2026). Fallback for `pi`: the constant `0.2146` for `(1 - pi/4)`. Fallback for `1lh`: an explicit line-height token in px. State the fallback in the report.
-- **Radius larger than the pill**: the reel's rule is "use the real radius". Browsers clamp a radius that is bigger than half the height, so a `9999px` token renders as `pill`. The faithful fix is `--r: var(--pill)`. A `min(var(--r), var(--pill))` wrapper is an engineering convenience with the same result for pills; it is not in the reel.
-- **Borders**: the reel's button has no border. With a border, the curve the label meets is the padding box's inner corner (radius `r − border-width`) and `pill` should be measured on the padding box. Flag it; do not assume.
-- **Non-1lh content**: `pill = py + half the content height`. The reel's content is one line box (`1lh`). For a two-line label or a taller icon, measure the content height instead of assuming `0.5lh`.
-- **Touch target and minimum size**: WCAG 2.5.8 wants 24×24 CSS px minimum, platform guidelines often 44×44. The reel does not discuss this. If a size is below the target, raise `py` (which the math follows) rather than adding invisible padding that breaks the concentric result, and say so.
-- **Focus ring and hit area**: the negative icon margin does not change the button's box, so focus rings and click areas are unaffected.
-- **Icon-only buttons with their own padding tokens**: the reel's icon-only result is `py` all around because the icon is a first and last child. If the design system defines a separate square icon-button size, keep it and report the difference.
+- `lh`, `cap` and `pi` in `calc()` need current browsers; fallbacks: `0.2146` for `(1 - pi/4)`, an explicit line-height token for `1lh`.
+- Over-large radius tokens render clamped to `pill`; `--r: var(--pill)` is the faithful fix, `min(var(--r), var(--pill))` a convenience with the same result for pills.
+- Borders: the label meets the padding box's inner corner (`r − border-width`); flag, do not assume.
+- Multi-line labels or taller icons: `pill = py + contentHeight / 2`; the audit measures content height and flags a mismatch with `0.5lh`.
+- Minimum target size (WCAG 2.5.8 24 px; platforms 44 px): grow `py`, the math follows. Focus rings and hit areas are unaffected by the negative icon margin.
+- Fixed-size square icon buttons are a different component; leave them unless asked.
 
 ## Files
 
-- `references/reel-evidence.md`: source, metadata, timestamped transcript, on-screen CSS per frame, measurement readouts, ambiguity log.
-- `references/math.md`: definitions, derivation, units, rounding, extended worked examples.
-- `references/adapting.md`: translating the CSS to tokens, Tailwind, CSS Modules, CSS-in-JS, Sass, SwiftUI / Compose / React Native.
-- `references/supplemental.md`: the non-reel guidance above, expanded, each item marked with its conflict rule.
-- `scripts/pill_math.py`: calculator and checker (`--json`, `--check measured.json`).
-- `scripts/measure-buttons.js`: in-page measurement, returns JSON (no dependencies).
-- `scripts/audit_buttons.mjs`: Playwright runner around `measure-buttons.js`, prints the audit table and exits non-zero on failures.
-- `tests/`: `test_pill_math.py` (deterministic reel numbers), `browser.test.mjs` (before/after fixtures measured in Chromium), `fixtures/before.html`, `fixtures/after.html`.
-- `evidence/`: downscaled key frames, `transcript.srt`, word-level `transcript-words.json`, `metadata.txt`.
+- `references/math.md`: derivation, units, rounding, extended examples, Chromium measurements.
+- `references/adapting.md`: translations to tokens, Tailwind, CSS-in-JS, component libraries, native UI.
+- `references/supplemental.md`: out-of-scope cases with conflict rules.
+- `references/provenance.md`: attribution, archival transcript and frame evidence, ambiguity log (optional).
+- `scripts/pill_math.py` (calculator), `scripts/measure-buttons.js` (in-page), `scripts/audit_buttons.mjs` (Playwright runner).
+- `tests/`: `test_pill_math.py`, `browser.test.mjs`, `fixtures/before.html`, `fixtures/after.html`.
+- `evals/`: two cases in the `claude plugin eval` layout.

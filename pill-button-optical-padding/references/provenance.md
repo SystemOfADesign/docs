@@ -1,10 +1,8 @@
-# Reel evidence
+# Provenance (optional)
 
-Source: https://www.instagram.com/reel/DgQdaYhCFeA/?lqvp=NWk5Nm9pZ2RsNW9s
-Account: Ariakit (@ariakitjs). Posted 2026-11-27. Duration 1:52. 1080x1920, 60 fps.
-Caption: "You (and Claude) have been styling pill buttons wrong all along. Fair warning: this one gets VERY nerdy. Round ends steal space from the text and push the icon off-center. Here's the #CSS that fixes both, with a bit of π. Turn the sound on for the full #UI #design breakdown"
+The method in `SKILL.md` was transcribed from a short video by Ariakit (@ariakitjs) published 2026-11-27: https://www.instagram.com/reel/DgQdaYhCFeA/ . This file is the archival record: how it was captured, the transcript, what was on screen when, and where the audio and visuals were reconciled. Nothing here is needed to apply the skill.
 
-How it was watched (2026-11-27): downloaded with yt-dlp via the `watch` skill; 60 frames sampled uniformly at 1024 px width (`--no-scene-change`, because scene-change sampling of this screen recording is unreliable); audio transcribed locally with mlx-whisper (`whisper-large-v3-turbo`, word timestamps) because the self-hosted Whisper endpoint was unreachable. No captions existed on the post. Transcript and 17 downscaled key frames are in `../evidence/`.
+Capture (2026-11-27): downloaded with yt-dlp; 60 frames sampled uniformly at 1024 px width (`--no-scene-change`, because scene-change sampling of this screen recording is unreliable); audio transcribed locally with mlx-whisper (`whisper-large-v3-turbo`, word timestamps) because the self-hosted Whisper endpoint was unreachable. No captions existed on the post. `../evidence/` holds `metadata.txt` (yt-dlp info), `transcript.srt` and 17 downscaled key frames (`frame_00NN.jpg`, frame N ≈ (N − 0.5) × 1.875 s), chosen to show every CSS state and dimension readout. The video and audio are not committed; re-download from the URL above.
 
 ## Transcript (mlx-whisper, lightly aligned to frames)
 
@@ -81,11 +79,11 @@ Frame numbers are from the 60-frame uniform sample (frame N ≈ (N − 0.5) × 1
 | Text-only, icon-only cases | yes | `20 \| 20` and `8 \| 8` | consistent |
 | `gap: max(var(--py), var(--px) - (1lh - 1cap) / 2)` | never mentioned | on screen throughout | shown, unexplained; kept verbatim |
 
-## Ambiguity log
+## Ambiguity log (how the normative text was fixed)
 
 1. **Denominator "the height".** The audio says "spread them over the height". The formula divides by `pill` (half the height) after taking two corners, which equals dividing the two corners' area by the full height `2·pill`. The on-screen hatched strip spans the full button height, not just the label's line box. Codified as the full height. Confidence: high (every readout matches).
 2. **Line-height and cap height.** Never stated. Inferred from readouts: `1lh = 24px` (icon 24 square, button height 40, pill 20) and `1cap ≈ 12px` (gap readout 10 = max(8, 16 − (24 − 12)/2)). Used only to reproduce the `gap` number; the skill does not depend on these inferred values.
 3. **Rounding.** Readouts are rounded to whole px (4.29 → "4", 11.7 → "12", 20.29 → "20", 20.98 → "21", 11.2 → "11"). The CSS is never rounded. The skill compares measurements with a 0.5 px tolerance.
 4. **Starting `gap` rule.** Present on screen from the first "usual pill" frame; not part of the fix narrative. Kept verbatim, labeled as shown-but-unexplained.
-5. **What "real radius" means when the token is 999px.** The reel's remedy is to set `--r: var(--pill)`. It does not show `min()` or any clamp. Anything beyond "set `--r` to the rendered radius" is supplemental.
-6. **Borders, multi-line labels, touch targets, browser fallbacks.** Not covered by the reel at all. All guidance on them lives in `supplemental.md`.
+5. **What "real radius" means when the token is 999px.** The remedy shown is to set `--r: var(--pill)`. It does not show `min()` or any clamp. Anything beyond "set `--r` to the rendered radius" is supplemental.
+6. **Borders, multi-line labels, touch targets, browser fallbacks.** Not covered by the source at all. All guidance on them lives in `supplemental.md`.

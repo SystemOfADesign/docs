@@ -1,4 +1,4 @@
-# Adapting the reel's CSS to an existing app
+# Adapting the target CSS to an existing app
 
 The math never changes. What changes is where the four variables (`--py`, `--px`, `--pill`, `--r`) come from and how the two child roles (icon, label) are addressed. Work on the shared button, not on call sites.
 

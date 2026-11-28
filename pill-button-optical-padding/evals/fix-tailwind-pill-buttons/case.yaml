@@ -1,13 +1,13 @@
 schema_version: "1.1"
 name: fix-tailwind-pill-buttons
 expected_outcome: |
-  The shared Button styles are changed to the reel's math: the icon's edge margin is
+  The shared Button styles are changed to the skill's formulas: the icon's edge margin is
   calc(var(--py) - var(--px)), the label's edge margin is
   calc(var(--r) * (1 - pi / 4) * var(--r) / var(--pill)) with --pill: calc(var(--py) + 0.5lh),
   the radius fed to the math is the real one (not 9999px, even if rounded-full stays for the picture),
   and :first-child / :last-child rules apply the per-child --edge so all variants work. The old
   mr-2 / ml-2 icon margins are removed. The response reports measured or computed before/after
   numbers per variant (icon offset 16 -> 8, strip ~4.29, optical ~11.7 -> 16 at 16px/24px) and keeps
-  any supplemental advice (touch targets, fallbacks) clearly separate from the reel's math.
+  any supplemental advice (touch targets, fallbacks) clearly separate from the formulas.
 context:
   scaffold_script: place-files.sh

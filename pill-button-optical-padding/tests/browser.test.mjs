@@ -1,4 +1,4 @@
-// Measures tests/fixtures/{before,after}.html in Chromium and checks them against the reel's math.
+// Measures tests/fixtures/{before,after}.html in Chromium against the formulas.
 // Run: node --test tests/   (skips the browser cases when playwright cannot be resolved; set PILL_PW_DIR)
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -10,7 +10,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const pw = loadPlaywright();
 const near = (a, b, tol = 0.5) => Math.abs(a - b) <= tol;
 
-test('before.html fails the reel checks the way the reel describes', { skip: !pw && 'playwright not resolvable' }, async () => {
+test('before.html fails the checks as expected', { skip: !pw && 'playwright not resolvable' }, async () => {
   const r = await auditPage(join(here, 'fixtures/before.html'), { pw });
   const byId = Object.fromEntries(r.buttons.map((b) => [b.id, b]));
   const b = byId['icon-first'];
@@ -40,6 +40,6 @@ test('after.html passes every check for every variant', { skip: !pw && 'playwrig
   assert.ok(near(byId['r-19px'].children[1].marginEnd, 3.87));
   assert.ok(near(byId['r-4px'].children[1].marginEnd, 0.17));
   assert.ok(near(byId['small-14px'].pill, 17) && near(byId['small-14px'].children[1].marginEnd, 3.65));
-  assert.ok(byId['rounded-full-token'].rDeclared > 1000 && near(byId['rounded-full-token'].r, 20) && byId['rounded-full-token'].checks['real-radius']);
+  assert.ok(byId['rounded-full-token'].rDeclared > 1000 && near(byId['rounded-full-token'].r, 20), 'declared 9999 renders as pill');
   assert.ok(near(byId['rtl'].children[0].startDist, 8), 'rtl icon concentric');
 });

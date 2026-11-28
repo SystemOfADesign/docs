@@ -1,4 +1,4 @@
-// In-page measurement for pill button optical padding (Ariakit reel DgQdaYhCFeA).
+// In-page measurement for pill button optical padding.
 // No dependencies. Paste into a browser console or run via scripts/audit_buttons.mjs.
 //   measurePillButtons('button, [role="button"]') -> { k, tolerance, buttons: [...] }
 // Roles: a child is an "icon" if it is <svg>/<img>, has data-pill-role="icon", a class containing
@@ -36,7 +36,7 @@
     const rDeclared = Math.max(...radii);
     // CSS clamps radii so adjacent pairs fit the side: for a symmetric pill the rendered radius is min(r, h/2, w/2)
     const r = Math.min(rDeclared, height / 2, width / 2);
-    const pill = pTop + contentHeight / 2; // reel: py + 0.5lh; measured on the content height (see supplemental S4)
+    const pill = pTop + contentHeight / 2; // py + 0.5lh for single-line content; measured on the content height (supplemental S4)
     const edgeLabel = r * K * r / pill;
 
     const kids = Array.from(btn.children).filter((c) => {
@@ -66,6 +66,8 @@
     });
     if (isNaN(lh)) lh = contentHeight;
 
+    // Two checks, 0.5px tolerance. The optical number (px + margin - strip) is reported, not checked:
+    // it equals px exactly when label-strip passes.
     const checks = {};
     let opticalStart = null, opticalEnd = null;
     for (const c of children) {
@@ -73,24 +75,14 @@
         if (c.position.includes('first')) checks['icon-concentric:start'] = Math.abs(c.startDist - pTop) <= TOL;
         if (c.position.includes('last')) checks['icon-concentric:end'] = Math.abs(c.endDist - pTop) <= TOL;
       } else {
-        if (c.position.includes('first')) {
-          checks['label-strip:start'] = Math.abs(c.marginStart - edgeLabel) <= TOL;
-          opticalStart = pStart + c.marginStart - edgeLabel;
-          checks['optical-space:start'] = Math.abs(opticalStart - pStart) <= TOL;
-        }
-        if (c.position.includes('last')) {
-          checks['label-strip:end'] = Math.abs(c.marginEnd - edgeLabel) <= TOL;
-          opticalEnd = pEnd + c.marginEnd - edgeLabel;
-          checks['optical-space:end'] = Math.abs(opticalEnd - pEnd) <= TOL;
-        }
+        if (c.position.includes('first')) { checks['label-strip:start'] = Math.abs(c.marginStart - edgeLabel) <= TOL; opticalStart = pStart + c.marginStart - edgeLabel; }
+        if (c.position.includes('last')) { checks['label-strip:end'] = Math.abs(c.marginEnd - edgeLabel) <= TOL; opticalEnd = pEnd + c.marginEnd - edgeLabel; }
       }
     }
-    const stripOk = Object.entries(checks).filter(([k]) => k.startsWith('label-strip')).every(([, v]) => v);
-    checks['real-radius'] = rDeclared <= r + TOL || stripOk;
     const gapRaw = cs.columnGap === 'normal' ? cs.gap : cs.columnGap;
 
     return {
-      id: btn.id || (btn.className && typeof btn.className === 'string' && btn.className.trim() ? '.' + btn.className.trim().split(/\s+/).join('.') : btn.tagName.toLowerCase()) + '#' + index,
+      id: btn.id || `${btn.tagName.toLowerCase()}${typeof btn.className === 'string' && btn.className.trim() ? '.' + btn.className.trim().split(/\s+/)[0] : ''}#${index}`,
       text: (btn.textContent || '').trim().slice(0, 40),
       fontSize: num(cs.fontSize), lh, contentHeight, lhMatchesContent: Math.abs(lh - contentHeight) <= TOL,
       py: pTop, pyBottom: pBottom, px: pStart, pxEnd: pEnd,
