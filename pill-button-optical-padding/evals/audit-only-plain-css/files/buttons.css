@@ -1,0 +1,5 @@
+body { font: 16px/1.5 Inter, system-ui, sans-serif; }
+.pill, .square { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 0; font: inherit; }
+.pill { border-radius: 9999px; }
+.square { border-radius: 0; }
+.icon { width: 24px; height: 24px; }

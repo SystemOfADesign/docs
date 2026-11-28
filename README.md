@@ -7,3 +7,4 @@ Engineering research notes and design documents.
 - [Claude Docs screenshots](claude-docs/README.md)
 - [Push-to-talk dictation: reimplementation with a separate Whisper instance and Gemma correction](dictation/whisper-gemma-dictation.md)
 - [Theo: ts-rust, V8 isolates, and the browser as an agent's computer (video analysis, demo forensics, fact-check)](theo-ts-rust-v8-isolates/README.md)
+- [Pill button optical padding: agent skill with the exact math from the Ariakit reel, evidence, scripts and tests](pill-button-optical-padding/README.md)

@@ -1,0 +1,36 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>After: the reel's final CSS (reel 1:47)</title>
+<style>
+  body { font: 16px/1.5 system-ui, sans-serif; background: #0f1115; color: #fff; padding: 40px; }
+  button {
+    --py: 0.5em; --px: 1em;
+    --pill: calc(var(--py) + 0.5lh);
+    --r: var(--pill);
+    display: inline-flex; align-items: center; margin: 12px;
+    font: inherit; color: inherit; background: #2a2e37; border: 0;
+    padding: var(--py) var(--px);
+    gap: max(var(--py), var(--px) - (1lh - 1cap) / 2);
+    border-radius: var(--r);
+  }
+  .icon  { width: 1lh; height: 1lh; --edge: calc(var(--py) - var(--px)); }
+  .label { --edge: calc(var(--r) * (1 - pi / 4) * var(--r) / var(--pill)); }
+  button > :first-child { margin-inline-start: var(--edge); }
+  button > :last-child  { margin-inline-end:   var(--edge); }
+  .py7 { --py: 0.7em; }
+  .r19 { --r: 19px; }
+  .r4  { --r: 4px; }
+  .sm  { font-size: 14px; line-height: 20px; }
+  .rounded-full { border-radius: 9999px; }   /* picture unchanged; --r still feeds the math */
+  .rtl { direction: rtl; }
+</style>
+<button id="icon-first"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/></svg><span class="label">Approve</span></button>
+<button id="icon-last"><span class="label">Approve</span><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/></svg></button>
+<button id="text-only"><span class="label">Approve</span></button>
+<button id="icon-only"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/></svg></button>
+<button id="py-0-7em" class="py7"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/></svg><span class="label">Approve</span></button>
+<button id="r-19px" class="r19"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/></svg><span class="label">Approve</span></button>
+<button id="r-4px" class="r4"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/></svg><span class="label">Approve</span></button>
+<button id="small-14px" class="sm"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/></svg><span class="label">Approve</span></button>
+<button id="rounded-full-token" class="rounded-full"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/></svg><span class="label">Approve</span></button>
+<button id="rtl" class="rtl"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/></svg><span class="label">Approve</span></button>

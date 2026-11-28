@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+:root {
+  --radius-pill: 9999px;
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+}
+
+.btn { font-family: Inter, system-ui, sans-serif; }

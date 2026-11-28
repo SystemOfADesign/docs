@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: audit-only-plain-css
+expected_outcome: |
+  No files are modified. The response is an audit table listing, per button, measured or computed
+  py, px, line-height, rendered radius, pill, the expected icon edge (py - px) and label strip
+  (r * (1 - pi/4) * r / pill), the current values, and pass/fail per check. It identifies that the
+  "Approve" icon-first button has an off-center icon (sits at px not py) and a label with no strip
+  (optical ~11.7 instead of 16), that the square "Cancel" button (radius 0) passes trivially, and
+  that the 9999px radius must be replaced by the real radius in the math.
+context:
+  scaffold_script: place-files.sh
